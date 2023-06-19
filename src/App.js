@@ -34,8 +34,6 @@ class App extends React.Component {
 export default App;
 
 
-
-
 /*
 {
   this.state.books.length > 0 &&
