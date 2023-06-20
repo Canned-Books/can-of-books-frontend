@@ -15,14 +15,15 @@ class BestBooks extends React.Component {
   }
 
   /* TODO: Make a GET request to your API to fetch all the books from the database  */
-  getAllBooks = () => {
+  getAllBooks = async () => {
+    let url = `${process.env.REACT_APP_BOOK_SERVER}/books`
+    console.log('This is the URL', url);
     try {
-      // Make a call to my server and hit my books endpoint
-      // http://localhost:3001/books
-      let url = `${process.env.React_APP_SERVER}/books`
+      // todo: make a call to my server and hit my books endpoint
 
       let booksFromDB = await axios.get(url);
-      // Save the response from my server to state
+      console.log('This is books from BD', booksFromDB);
+      // todo: save the response from my server to my state
       this.setState({
         books: booksFromDB.data
       })
