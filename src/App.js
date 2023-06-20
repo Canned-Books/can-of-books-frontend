@@ -1,11 +1,14 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from './Header';
-import Footer from './Footer';
-import BestBooks from './BestBooks';
-import About from './About';
+import './App.css';
 import axios from 'axios';
+import BestBooks from './BestBooks';
+import { Container, Form, Button } from 'react-bootstrap';
+
+//import 'bootstrap/dist/css/bootstrap.min.css';
+//import { BrowserRouter as Router, Routes, Route, } from 'react-router-dom';
+//import Header from './Header';
+//import Footer from './Footer';
+//import About from './About';
 
 class App extends React.Component {
   constructor(props){
@@ -14,7 +17,7 @@ class App extends React.Component {
       books: [],
     }
   }
-}
+
   //To do Handler to get all books
 getAllBooks = async () => {
   try {
@@ -33,6 +36,7 @@ getAllBooks = async () => {
 componentDidMount() {
   this.getAllBooks();
 }
+
 
 /** Add Book To DB using 2 handlers */
 
@@ -97,4 +101,48 @@ deleteBook = async (id) => {
   }
 }
 
+/** Render function so that we can pass props/functions etc... to other components */
+
+render(){
+  return (
+    <>
+      <header>
+        <h1>Canned Books</h1>
+      </header>
+      <main>
+        {
+          this.state.books.length > 0 &&
+          <>
+            <BestBooks
+              books={this.state.books}
+              deleteBook={this.deleteBook}
+            />
+          </>
+        }
+        <Container className="squareContainer">
+          <Form onSubmit={this.handleBookSubmit}>
+            <Form.Group controlId="title">
+              <Form.Label>Title</Form.Label>
+              <Form.Control type="text" />
+            </Form.Group>
+            <Form.Group controlId="description">
+              <Form.Label>Description</Form.Label>
+              <Form.Control type="text" />
+            </Form.Group>
+            <Form.Group controlId="author">
+              <Form.Label>Author</Form.Label>
+              <Form.Control type="text" />
+            </Form.Group>
+            <Form.Group controlId="status">
+              <Form.Label>Status</Form.Label>
+              <Form.Control type="boolean" />
+            </Form.Group>
+            <Button type="submit">Add Book</Button>
+          </Form>
+        </Container>
+      </main>
+    </>
+  );
+}
+}
 export default App;
