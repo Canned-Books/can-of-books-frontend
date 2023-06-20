@@ -1,33 +1,55 @@
 import React from 'react';
-import Header from './Header';
-import Footer from './Footer';
-import BestBooks from './BestBooks';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route
-} from "react-router-dom";
+import './App.css';
+import axios from 'axios';
 
 class App extends React.Component {
-  render() {
+  constructor(props){
+    super(props);
+    this.state = {
+      books: [],
+    }
+  }
+
+  //To do Handler to get all books
+  getAllBooks = () => {
+    try {
+      // Make a call to my server and hit my books endpoint
+      // http://localhost:3001/books
+      let url = `${process.env.React_APP_SERVER}/books`
+
+      let booksFromDB = await axios.get(url);
+      // Save the response from my server to state
+      this.setState({
+        books: booksFromDB.data
+      })
+
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  componentDidMount() {
+    this.getAllBooks();
+  }
+
+  render(){
     return (
       <>
-        <Router>
-          <Header />
-          <Routes>
-            <Route 
-              exact path="/"
-              element={<BestBooks />}
-            >
-            </Route>
-            {/* PLACEHOLDER: add a route with a path of '/about' that renders the `About` component */}
-          </Routes>
-          <Footer />
-        </Router>
+        <header>
+          <h1>Awesome Sauce Books</h1>
+        </header>
+        <main>
+          {
+            this.state.books.length > 0 &&
+            <>
+              {this.state.books.map(book => {
+                return <p key={book._id}>{book.name} is a {book.description}</p>
+              })}
+            </>
+          }
+        </main>
       </>
-    )
+    );
   }
 }
-
 export default App;
