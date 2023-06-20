@@ -1,5 +1,10 @@
 import React from 'react';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route, } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from './Header';
+import Footer from './Footer';
+import BestBooks from './BestBooks';
+import About from './About';
 import axios from 'axios';
 
 class App extends React.Component {
@@ -11,45 +16,33 @@ class App extends React.Component {
   }
 
   //To do Handler to get all books
-  getAllBooks = () => {
-    try {
-      // Make a call to my server and hit my books endpoint
-      // http://localhost:3001/books
-      let url = `${process.env.React_APP_SERVER}/books`
-
-      let booksFromDB = await axios.get(url);
-      // Save the response from my server to state
-      this.setState({
-        books: booksFromDB.data
-      })
-
-    } catch (error) {
-      console.log(error.message);
-    }
-  }
-
-  componentDidMount() {
-    this.getAllBooks();
-  }
-
+  
   render(){
     return (
-      <>
-        <header>
-          <h1>Awesome Sauce Books</h1>
-        </header>
-        <main>
-          {
-            this.state.books.length > 0 &&
-            <>
-              {this.state.books.map(book => {
-                return <p key={book._id}>{book.name} is a {book.description}</p>
-              })}
-            </>
-          }
-        </main>
-      </>
+        <Router>
+          <Header />
+          <Routes>
+            <Route path="/" element={<BestBooks />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
+          <Footer />
+        </Router>
     );
   }
 }
+
 export default App;
+
+
+
+
+/*
+{
+  this.state.books.length > 0 &&
+  <>
+    {this.state.books.map(book => {
+      return <p key={book._id}>{book.name} is a {book.description}</p>
+    })}
+  </>
+}
+*/
