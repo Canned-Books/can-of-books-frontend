@@ -3,12 +3,12 @@ import './App.css';
 import axios from 'axios';
 import BestBooks from './BestBooks';
 import { Container, Form, Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-//import 'bootstrap/dist/css/bootstrap.min.css';
-//import { BrowserRouter as Router, Routes, Route, } from 'react-router-dom';
-//import Header from './Header';
-//import Footer from './Footer';
-//import About from './About';
+import { BrowserRouter as Router, Routes, Route, } from 'react-router-dom';
+import Header from './Header';
+import Footer from './Footer';
+import About from './About';
 
 class App extends React.Component {
   constructor(props){
@@ -82,6 +82,7 @@ postBook = async (bookObj) => {
 }
 
 /** Deleting a Book From the DB */
+
 deleteBook = async (id) => {
   try {
     // TODO: build the url for axios 
