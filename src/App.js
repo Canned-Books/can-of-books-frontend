@@ -84,6 +84,7 @@ postBook = async (bookObj) => {
 /** Deleting a Book From the DB */
 
 deleteBook = async (id) => {
+  console.log('inside the delete book function');
   try {
     // TODO: build the url for axios 
     let url = `${process.env.REACT_APP_SERVER}/books/${id}`

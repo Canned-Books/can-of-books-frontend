@@ -1,6 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 import Carousel from 'react-bootstrap/Carousel';
+import {Container, Form, Button} from 'react-bootstrap';
+import {Image} from 'react-bootstrap';
+
+let bookImage = require('./book.jpg'); 
 
 class BestBooks extends React.Component {
   constructor(props) {
@@ -42,10 +46,18 @@ class BestBooks extends React.Component {
           <Carousel>
             {this.state.books.map(book => (
               <Carousel.Item key={book._id}>
-                <div>
+                {/* <Image src={bookImage} alt = 'Plain Book Cover'> </Image> */}
+                <img className="d-block mx-auto"
+                src={bookImage} 
+                alt="Empty book cover" 
+                height="600rem"/>
+                {/* <div> */}
+                <Carousel.Caption>
                   <h3>{book.title}</h3>
                   <p>Author: {book.author}</p>
-                </div>
+                <Button onClick={() => this.props.deleteBook(book._id)}>Delete Button</Button>
+                </Carousel.Caption>
+                {/* </div> */}
               </Carousel.Item>
             ))}
           </Carousel>
