@@ -48,7 +48,7 @@ handleBookSubmit = (event) => {       /** this function is triggered when a form
   let bookObj = {     /** This object accesses the values: title, description, author, and status */
     title: event.target.title.value,
     description: event.target.description.value,
-    author: +event.target.author.value,   /** The "+" is used to convert the value into an integer */
+    author: event.target.author.value,   /** The "+" is used to convert the value into an integer */
     status: event.target.status.value
   }
 

@@ -9,33 +9,38 @@ import bookImage from './img/book.jpg';
 class BestBooks extends React.Component {
   constructor(props) {      /** Constructor::method that initializes Objects State in Class  */
     super(props);           /** method::called due to constructor implementation, allows this.props */
-    this.state = {          /** assigns the initial state in the constructor (local state) // Only used by constructor */ 
-      books: []             /** initial value*/
-    }
+   
+   
+//    this.state = {          /** assigns the initial state in the constructor (local state) // Only used by constructor */ 
+//      books: []             /** initial value*/
+//    }
   }
-/****** componentDidMount: lifecycle method that is called after a component is mounted */
-  componentDidMount() {     /** automatically invoked upon a component mounting */
-    this.getAllBooks();     /** this fetches all the books inside of the component that are now mounted */
-  }       /** This ensures books are fetched from the server and the component's state is updated and ready to display */
-
-/********************* Handler: Get books from the DB ********************/
-  getAllBooks = async () => {                           /** asynchronous */
-    let url = `${process.env.REACT_APP_SERVER}/books`   /** server via .env file */
-    console.log('This is the URL', url);                /** console log because...? */
-    try {                                               /** function attempts to...: */
-          /** Send a GET Request to constructed URL and retrieve Books */
-      let booksFromDB = await axios.get(url);   /** Stores books we receive into booksFromDB */
-      console.log('These are the books from the DB', booksFromDB);
-      this.setState({             /** "quicksave" */
-        books: booksFromDB.data   /** data is assigned the books property */
-      })
-
-    } catch (error) {             /** Error handling */
-      console.log(error.message); /** Error printing */
-      }
-  }
-/** RENDER method (required method in a React componenet) */
-  render() {
+      //
+      //
+      ///****** componentDidMount: lifecycle method that is called after a component is mounted */
+      //  componentDidMount() {     /** automatically invoked upon a component mounting */
+      //    this.getAllBooks();     /** this fetches all the books inside of the component that are now mounted */
+      //  }       /** This ensures books are fetched from the server and the component's state is updated and ready to display */
+      //
+      ///********************* Handler: Get books from the DB ********************/
+      //  getAllBooks = async () => {                           /** asynchronous */
+      //    let url = `${process.env.REACT_APP_SERVER}/books`   /** server via .env file */
+      //    console.log('This is the URL', url);                /** console log because...? */
+      //    try {                                               /** function attempts to...: */
+      //          /** Send a GET Request to constructed URL and retrieve Books */
+      //      let booksFromDB = await axios.get(url);   /** Stores books we receive into booksFromDB */
+      //      console.log('These are the books from the DB', booksFromDB);
+      //      this.setState({             /** "quicksave" */
+      //        books: booksFromDB.data   /** data is assigned the books property */
+      //      })
+          //
+      //    } catch (error) {             /** Error handling */
+      //      console.log(error.message); /** Error printing */
+      //      }
+      //  }
+      ///** RENDER method (required method in a React componenet) */
+  
+    render() {
     return (      /** returns JSX (JavaScript XML) representing component UI */
     /** The returned JSX is wrapped in epty tags to create a fragment, allowing multiple
      * adjacent elements without adding an extra DOM node */  
@@ -43,10 +48,10 @@ class BestBooks extends React.Component {
         {/** Heading to the component */}
         <h2>My Essential Lifelong Learning &amp; Formation Shelf</h2>
         {/** Conditional rendering, either a carousel of books or message of book collection empty */}
-        {this.state.books.length ? (
+        {this.props.books.length ? (
           <Carousel>
             {/** map method iterates over the books array and creates a Carousel.Item for each book */}
-            {this.state.books.map(book => (
+            {this.props.books.map(book => (
               <Carousel.Item key={book._id}>
                 <img className='d-block mx-auto' src={bookImage} alt="book" height="600rem"/>
                 {/** the key select the book id# to uniquely identify the object */}
