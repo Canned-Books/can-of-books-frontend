@@ -18,11 +18,11 @@ class App extends React.Component {
       <>
         <Router>
           <Header />
-          <Routes>
+           <Routes>
             <Route exact path="/" element={<BestBooks />}></Route>
             <Route exact path="/about" element = {<Profile />}></Route>
           </Routes>
-          <Footer />
+        <Footer />
         </Router>
       </>
     )

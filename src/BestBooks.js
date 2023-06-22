@@ -4,7 +4,8 @@ import './css/BestBooks.css';
 import AddBook from './AddBook';
 import Button from 'react-bootstrap/Button';
 import Carousel from 'react-bootstrap/Carousel';
-import UpdateBook from './UpdateBook'
+import UpdateBook from './UpdateBook';
+import libraryImage from './img/libraryBkgd.webp'
 
 class BestBooks extends React.Component {
   constructor(props) {
@@ -94,7 +95,7 @@ class BestBooks extends React.Component {
               <Carousel>
             {this.state.books.map( (book)=>(
               <Carousel.Item key={book._id}>
-                <img className="d-block w-50" src={book.imageUrl || 'https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Ym9va3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=400&q=60'} alt={book.title} />
+                <img className='d-block mx-auto' src={libraryImage} alt="book" height="600rem"/>
                 <Carousel.Caption>
                   <h3>{book.title}</h3>
                   <p>Description: {book.description} <br />
