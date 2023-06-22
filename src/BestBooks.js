@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import './BestBooks.css';
-import AddBook from './addBook';
+import './css/BestBooks.css';
+import AddBook from './AddBook';
 import Button from 'react-bootstrap/Button';
 import Carousel from 'react-bootstrap/Carousel';
 import UpdateBook from './UpdateBook'

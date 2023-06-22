@@ -12,9 +12,10 @@ class UpdateBook extends React.Component{
         event.preventDefault();
         let bookObj = {
             title: event.target.title.value,
+            author: event.target.author.value,
             description: event.target.description.value,
-            status: event.target.status.value,
-            imageUrl: event.target.imageUrl.value,
+            status: event.target.status.checked,
+            //imageUrl: event.target.imageUrl.value,
             _id: this.props.bookToUpdate._id,
             __v: this.props.bookToUpdate.__v
         }
@@ -49,17 +50,17 @@ class UpdateBook extends React.Component{
                             <Form.Label>Title</Form.Label>
                             <Form.Control defaultValue={this.props.bookToUpdate.title} type="text" />
                         </Form.Group>
+                        <Form.Group controlId="author">
+                            <Form.Label>Author</Form.Label>
+                            <Form.Control defaultValue={this.props.bookToUpdate.author} type="text" />
+                        </Form.Group>
                         <Form.Group controlId="description">
                             <Form.Label>Description</Form.Label>
                             <Form.Control defaultValue={this.props.bookToUpdate.description} type="text" />
                         </Form.Group>
                         <Form.Group controlId="status">
-                            <Form.Label>Status(available or unavailable)</Form.Label>
-                            <Form.Control defaultValue={this.props.bookToUpdate.status} type="text" />
-                        </Form.Group>
-                        <Form.Group controlId="imageUrl">
-                            <Form.Label>ImageUrl</Form.Label>
-                            <Form.Control defaultValue={this.props.bookToUpdate.imageUrl} type="text" />
+                            <Form.Label>Status</Form.Label>
+                            <Form.Control defaultValue={this.props.bookToUpdate.status} type="boolean" />
                         </Form.Group>                        
                         <Button type="submit">Submit</Button>
                         </Form>

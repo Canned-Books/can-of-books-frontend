@@ -14,7 +14,7 @@ class AddBook extends React.Component{
             title: event.target.title.value,
             description: event.target.description.value,
             status: event.target.status.value,
-            imageUrl: event.target.imageUrl.value
+            imageUrl: event.target.imageUrl.checked
         }
         console.log(bookObj);
         this.postBook (bookObj);
